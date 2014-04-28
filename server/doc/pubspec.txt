@@ -1,0 +1,21 @@
+name: todo_mvc
+author: Your Name
+homepage: http://ondart.me/
+version: 0.0.1
+description: todo_mvc server that uses dartling for its model.
+dependencies:
+  browser: any
+  dartling: any
+  mongo_dart: any
+
+dependencies:
+  browser: any
+  dartling:
+    git: 'https://github.com/dzenanr/dartling.git'
+  mongo_dart: any
+     
+dependencies:
+  browser: any
+  dartling:
+    path: 'C:\Users\ridjanod.FSA-RIDJANOD-2\dart\model\dartling'
+  mongo_dart: any  

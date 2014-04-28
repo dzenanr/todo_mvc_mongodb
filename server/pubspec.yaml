@@ -1,0 +1,11 @@
+name: todo_mvc
+version: 0.0.2
+description: todo_mvc server that uses dartling for its model and MongoDB for its database.
+author: Dzenan Ridjanovic
+homepage: http://ondart.me/
+documentation:
+dependencies:
+  browser: any
+  dartling:
+    git: https://github.com/dzenanr/dartling.git
+  mongo_dart: any

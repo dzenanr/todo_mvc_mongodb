@@ -1,0 +1,18 @@
+application: todo_mvc_mongodb
+version: 1
+deploy: true
+pub: true
+dart2js: true
+framework: dartling
+
+handlers:
+- url: /getresponse
+  match: exact
+  script: server.dart
+
+# Static content, this will be served by Nginx, "web" will point to the directory
+# "client/web", static content can only be served from client dir, never from 
+# root or the server dir. 
+- url: /
+  match: postregex
+  static_dir: web

@@ -12,6 +12,9 @@ import 'package:todo_mvc/todo_mvc.dart';
 const String HOST = "127.0.0.1"; // eg: localhost
 const int PORT = 8080;
 
+const String DB_URI = 'mongodb://127.0.0.1/';
+const String DB_NAME = 'todo_mvc_2';
+
 TodoMvcDb db;
 
 _integrateDataFromClient(String json) { 
@@ -45,7 +48,9 @@ _integrateDataFromClient(String json) {
 }
 
 start() {
-  HttpServer.bind(HOST, PORT)
+  var portEnv = Platform.environment['PORT'];
+  var port = portEnv == null ? PORT : int.parse(portEnv);
+  HttpServer.bind(HOST, port)
     .then((server) {
       server.listen((HttpRequest request) {
         switch (request.method) {
@@ -119,7 +124,9 @@ void defaultHandler(HttpRequest request) {
 }
 
 void main() {
-  db = new TodoMvcDb();
+  var dbUriEnv = Platform.environment['MONGODB_URI'];
+  var dbUri = dbUriEnv == null ? DB_URI : dbUriEnv;
+  db = new TodoMvcDb(dbUri, DB_NAME);
   db.open().then((_) {
     start();
   });

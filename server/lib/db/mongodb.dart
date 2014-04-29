@@ -1,19 +1,18 @@
 part of todo_mvc;
 
 class TodoMvcDb implements ActionReactionApi {
-  static const String DEFAULT_URI = 'mongodb://127.0.0.1/';
-  static const String DB_NAME = 'todo_mvc_2';
-
   TodoDomain domain;
   DomainSession session;
   MvcModel model;
   Tasks tasks;
 
+  String dbUri;
+  String dbName;
   Db db;
 
   TaskCollection taskCollection;
 
-  TodoMvcDb() {
+  TodoMvcDb(this.dbUri, this.dbName) {
     var repository = new Repository();
     domain = repository.getDomainModels('Todo');
     domain.startActionReaction(this);
@@ -24,7 +23,7 @@ class TodoMvcDb implements ActionReactionApi {
 
   Future open() {
     Completer completer = new Completer();
-    db = new Db('${DEFAULT_URI}${DB_NAME}');
+    db = new Db('${dbUri}${dbName}');
     db.open().then((_) {
       taskCollection = new TaskCollection(this);
       taskCollection.load().then((_) {

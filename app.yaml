@@ -1,4 +1,4 @@
-application: todo_mvc_mongodb
+application: todomvcmongodb
 version: 1
 deploy: true
 pub: true

@@ -9,7 +9,7 @@ import 'package:todo_mvc/todo_mvc.dart';
  * Use it at http://localhost:8080.
  */
 
-const String HOST = "127.0.0.1"; // eg: localhost
+const String HOST = '127.0.0.1'; // eg: localhost
 const int PORT = 8080;
 
 const String DB_URI = 'mongodb://127.0.0.1/';

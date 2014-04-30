@@ -12,8 +12,9 @@ class TodoApp {
   Footer footer;
   
   String serverResponse = '';
+  String url;
 
-  TodoApp(this.domain) {
+  TodoApp(this.domain, this.url) {  
     session = domain.newSession();
     MvcModel model = domain.getModelEntries('Mvc');
     clientTasks = model.tasks;
@@ -36,14 +37,13 @@ class TodoApp {
         }
       });
 
-      var url = 'http://127.0.0.1:8080';
       request.open('POST', url);
       request.send(clientTasks.toJson());
     });
 
     ButtonElement fromServer = querySelector('#from-server');
     fromServer.onClick.listen((MouseEvent e) {
-      HttpRequest.getString('http://127.0.0.1:8080')
+      HttpRequest.getString(url)
         .then((String json) {
           serverResponse = 'Server: ' + json;
           print('JSON text from the server: ${json}');

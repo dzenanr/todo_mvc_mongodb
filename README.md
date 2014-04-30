@@ -22,6 +22,8 @@ The author is thankful for the existence of
 and
 [mongo_dart: MongoDB driver for Dart](http://pub.dartlang.org/packages/mongo_dart).
 
+The project is prepared to be installed on [DartVoid](http://www.dartvoid.com/).
+
 Client
 
 + client starts by loading data from the local storage

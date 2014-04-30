@@ -125,10 +125,15 @@ void defaultHandler(HttpRequest request) {
 }
 
 void main() {
+  var dbUri = DB_URI;
+  var dbName = DB_NAME;
   var dbUriEnv = Platform.environment['MONGODB_URI'];
-  var dbUri = dbUriEnv == null ? DB_URI : dbUriEnv;
-  // DartVoid's database uri include the database name
-  db = new TodoMvcDb(dbUri, "");
+  if (dbUriEnv != null) {
+    // DartVoid's database uri includes the database name.
+    dbUri = dbUriEnv;
+    dbName = '';
+  }
+  db = new TodoMvcDb(dbUri, dbName);
   db.open().then((_) {
     start();
   });

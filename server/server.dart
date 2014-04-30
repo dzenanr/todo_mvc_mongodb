@@ -50,6 +50,7 @@ _integrateDataFromClient(String json) {
 start() {
   var portEnv = Platform.environment['PORT'];
   var port = portEnv == null ? PORT : int.parse(portEnv);
+  
   HttpServer.bind(HOST, port)
     .then((server) {
       server.listen((HttpRequest request) {
@@ -68,7 +69,7 @@ start() {
       }, onError: print);
     })
     .catchError(print)
-    .whenComplete(() => print('Listening for GET and POST on http://$HOST:$PORT'));
+    .whenComplete(() => print('Listening for GET and POST on http://$HOST:$port'));
 }
 
 void handleGet(HttpRequest request) {

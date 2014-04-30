@@ -50,6 +50,7 @@ _integrateDataFromClient(String json) {
 start() {
   var portEnv = Platform.environment['PORT'];
   var port = portEnv == null ? PORT : int.parse(portEnv);
+  
   HttpServer.bind(HOST, port)
     .then((server) {
       server.listen((HttpRequest request) {
@@ -68,7 +69,7 @@ start() {
       }, onError: print);
     })
     .catchError(print)
-    .whenComplete(() => print('Listening for GET and POST on http://$HOST:$PORT'));
+    .whenComplete(() => print('Listening for GET and POST on http://$HOST:$port'));
 }
 
 void handleGet(HttpRequest request) {
@@ -126,7 +127,8 @@ void defaultHandler(HttpRequest request) {
 void main() {
   var dbUriEnv = Platform.environment['MONGODB_URI'];
   var dbUri = dbUriEnv == null ? DB_URI : dbUriEnv;
-  db = new TodoMvcDb(dbUri, DB_NAME);
+  // DartVoid's database uri include the database name
+  db = new TodoMvcDb(dbUri, "");
   db.open().then((_) {
     start();
   });

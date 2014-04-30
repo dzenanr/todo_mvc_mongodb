@@ -75,7 +75,6 @@ start() {
 void handleGet(HttpRequest request) {
   HttpResponse res = request.response;
   print('${request.method}: ${request.uri.path}');
-
   addCorsHeaders(res);
   res.headers.contentType =
       new ContentType("application", "json", charset: 'utf-8');
@@ -87,6 +86,7 @@ void handleGet(HttpRequest request) {
 
 void handlePost(HttpRequest request) {
   print('${request.method}: ${request.uri.path}');
+  addCorsHeaders(request.response);
   request.listen((List<int> buffer) {
     var json = new String.fromCharCodes(buffer);
     print('JSON in POST: ${json}');
@@ -104,7 +104,7 @@ void handlePost(HttpRequest request) {
  */
 void addCorsHeaders(HttpResponse response) {
   response.headers.add('Access-Control-Allow-Origin', '*, ');
-  response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  response.headers.add('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   response.headers.add('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
 }
 

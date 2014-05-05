@@ -22,15 +22,13 @@ class TodoMvcDb implements ActionReactionApi {
   }
 
   Future open() {
-    Completer completer = new Completer();
     db = new Db('${dbUri}${dbName}');
-    db.open().then((_) {
-      taskCollection = new TaskCollection(this);
-      taskCollection.load().then((_) {
-        completer.complete();
-      });
-    }).catchError(print);
-    return completer.future;
+    return db.open()
+      .then((_) {
+        taskCollection = new TaskCollection(this);
+        taskCollection.load();
+      })
+      .catchError(print);
   }
 
   close() {
@@ -60,36 +58,30 @@ class TaskCollection {
   }
 
   Future load() {
-    Completer completer = new Completer();
-    dbTasks.find().toList().then((taskList) {
-      taskList.forEach((taskMap) {
-        var task = new Task.fromDb(todo.tasks.concept, taskMap);
-        todo.tasks.add(task);
-      });
-      completer.complete();
-    }).catchError(print);
-    return completer.future;
+    return dbTasks.find().toList()
+      .then((taskList) {
+        taskList.forEach((taskMap) {
+          var task = new Task.fromDb(todo.tasks.concept, taskMap);
+          todo.tasks.add(task);
+        });
+      })
+      .catchError(print);
   }
 
   Future<Task> insert(Task task) {
     var taskMap = task.toDb();
-    return dbTasks.insert(taskMap).then((_) {
-      print('inserted task: ${task.title}');
-    }).catchError(print);
+    return dbTasks.insert(taskMap).catchError(print);
   }
 
   Future<Task> delete(Task task) {
     var taskMap = task.toDb();
-    return dbTasks.remove(taskMap).then((_) {
-      print('removed task: ${task.title}');
-    }).catchError(print);
+    return dbTasks.remove(taskMap).catchError(print);
   }
 
   Future<Task> update(Task task) {
     var taskMap = task.toDb();
-    return dbTasks.update({'title': taskMap['title']}, taskMap).then((_) {
-      print('updated task: ${task.title}');
-    }).catchError(print);
+    return dbTasks.update({'title': taskMap['title']}, taskMap)
+      .catchError(print);
   }
 }
 

@@ -72,33 +72,24 @@ class TaskCollection {
   }
 
   Future<Task> insert(Task task) {
-    var completer = new Completer();
     var taskMap = task.toDb();
-    dbTasks.insert(taskMap).then((_) {
+    return dbTasks.insert(taskMap).then((_) {
       print('inserted task: ${task.title}');
-      completer.complete();
     }).catchError(print);
-    return completer.future;
   }
 
   Future<Task> delete(Task task) {
-    var completer = new Completer();
     var taskMap = task.toDb();
-    dbTasks.remove(taskMap).then((_) {
+    return dbTasks.remove(taskMap).then((_) {
       print('removed task: ${task.title}');
-      completer.complete();
     }).catchError(print);
-    return completer.future;
   }
 
   Future<Task> update(Task task) {
-    var completer = new Completer();
     var taskMap = task.toDb();
-    dbTasks.update({'title': taskMap['title']}, taskMap).then((_) {
+    return dbTasks.update({'title': taskMap['title']}, taskMap).then((_) {
       print('updated task: ${task.title}');
-      completer.complete();
     }).catchError(print);
-    return completer.future;
   }
 }
 

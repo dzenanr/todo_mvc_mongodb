@@ -12,35 +12,31 @@ class Task extends TaskGen {
   // added after code gen - begin 
   
   Task.fromDb(Concept concept, Map value): super(concept) {
-    bool beforeUpdateOid = concept.updateOid;
     concept.updateOid = true;
     oid = new Oid.ts(int.parse(value['oid']));
-    concept.updateOid = beforeUpdateOid;
+    concept.updateOid = false;
     code = value['code'];
     title = value['title'];
     completed = value['completed'];
-    bool beforeUpdateWhen = concept.updateWhen;
     concept.updateWhen = true;
     whenAdded = value['whenAdded'];
     whenSet = value['whenSet'];
     whenRemoved = value['whenRemoved'];
-    concept.updateWhen = beforeUpdateWhen;
+    concept.updateWhen = false;
   }
 
   Task.fromJson(Concept concept, Map value): super(concept) {
-    bool beforeUpdateOid = concept.updateOid;
     concept.updateOid = true;
     oid = new Oid.ts(int.parse(value['oid']));
-    concept.updateOid = beforeUpdateOid;
+    concept.updateOid = false;
     code = value['code'];
     title = value['title'];
     completed = value['completed'] == 'true' ? true : false;
-    bool beforeUpdateWhen = concept.updateWhen;
     concept.updateWhen = true;
     whenAdded = DateTime.parse(value['whenAdded']);
     whenSet = DateTime.parse(value['whenSet']);
     whenRemoved = DateTime.parse(value['whenRemoved']);
-    concept.updateWhen = beforeUpdateWhen;
+    concept.updateWhen = false;
   }
   
   bool get left => !completed;

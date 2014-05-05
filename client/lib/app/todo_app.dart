@@ -85,12 +85,12 @@ class TodoApp {
             serverTask.whenSet.millisecondsSinceEpoch) {
           if (serverTask.title != clientTask.title) {          
             var transaction = new Transaction('update-title', session);
-            transaction.add(new RemoveAction(session, clientTasks, serverTask));
-            transaction.add(new AddAction(session, clientTasks, clientTask));
+            transaction.add(new RemoveAction(session, clientTasks, clientTask));
+            transaction.add(new AddAction(session, clientTasks, serverTask));
             transaction.doit();
           } else if (serverTask.completed != clientTask.completed) {
             new SetAttributeAction(
-                session, serverTask, 'completed', clientTask.completed).doit();
+                session, clientTask, 'completed', serverTask.completed).doit();
           }
         }
       } else {

@@ -1,7 +1,6 @@
 .DS_Store
+.pub
 build
-.buildlog
 packages
 pubspec.lock
 *~
-  

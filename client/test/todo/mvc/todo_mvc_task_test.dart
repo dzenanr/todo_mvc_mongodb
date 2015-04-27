@@ -1,7 +1,7 @@
  
 // test/todo/mvc/todo_mvc_task_test.dart 
  
-import "package:unittest/unittest.dart"; 
+import "package:test/test.dart"; 
 import "package:dartling/dartling.dart"; 
 import "package:todo_mvc/todo_mvc.dart"; 
  
@@ -10,7 +10,6 @@ testTodoMvcTasks(
   DomainSession session; 
   group("Testing Todo.Mvc.Task", () { 
     session = todoDomain.newSession();  
-    expect(mvcModel.isEmpty, isTrue); 
     setUp(() { 
       mvcModel.init(); 
     }); 

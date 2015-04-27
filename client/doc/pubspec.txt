@@ -1,7 +1,7 @@
 name: todo_mvc
 author: Dzenan Ridjanovic
 homepage: http://ondart.me/
-version: 0.0.2
+version: 0.0.3
 description: todo_mvc application that uses dartling for its model.
 dependencies:
   browser: any
@@ -16,3 +16,9 @@ dependencies:
   browser: any
   dartling:
     path: 'C:\Users\ridjanod.FSA-RIDJANOD-2\dart\model\dartling'
+    
+    
+dependencies:
+  browser: any
+  dartling:
+    path: /home/dzenanr/dart/model/dartling

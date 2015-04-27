@@ -7,6 +7,7 @@ documentation:
 dependencies:
   browser: any
   dartling:
-    git: 'https://github.com/dzenanr/dartling.git'
+    git: git://github.com/dzenanr/dartling.git
+
 
   

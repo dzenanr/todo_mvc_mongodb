@@ -1,13 +1,12 @@
 name: todo_mvc
-version: 0.0.3
+version: 2.0.1
 description: todo_mvc application that uses dartling for its model.
-author: Your Name
+author: Dzenan Ridjanovic
 homepage: http://ondart.me/
 documentation:
 dependencies:
   browser: any
-  dartling:
-    git: git://github.com/dzenanr/dartling.git
+  dartling: any
 
 
   
